@@ -3,86 +3,72 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/firebase_options.dart';
 
+// background message
+Future<void> firebaseBackgroundHandler(RemoteMessage remoteMessage) async {
+  await Firebase.initializeApp();
+  debugPrint('1. bg message id ${remoteMessage.messageId}');
+}
+
 void main() async {
+  // Init Firebase App
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // Init Firebase Messaging
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  // Init Firebase Messaging Notification Setting
+  NotificationSettings notificationSettings =
+      await firebaseMessaging.requestPermission(
+    alert: true,
+    announcement: true,
+    badge: true,
+    carPlay: true,
+    criticalAlert: true,
+    provisional: true,
+    sound: true,
+  );
+  debugPrint('2. init notif ${notificationSettings.authorizationStatus}');
+  // call on background
+  FirebaseMessaging.onBackgroundMessage(firebaseBackgroundHandler);
+  // on foreground notif
+  FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
+    debugPrint('3. remote message data ${remoteMessage.data}');
+    if (remoteMessage.notification != null) {
+      debugPrint(
+          '4. remote message notification ${remoteMessage.notification}');
+    }
+  });
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-
-  getInitialMessage() async {
-    await _firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'nope',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getInitialMessage,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      backgroundColor: Colors.blue,
+      body: Container(
+        color: Colors.amber,
+        child: const Center(child: Text('halo')),
       ),
     );
   }
