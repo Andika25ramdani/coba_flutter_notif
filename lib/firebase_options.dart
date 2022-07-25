@@ -53,6 +53,7 @@ class DefaultFirebaseOptions {
     projectId: 'self-notif-try',
     authDomain: 'self-notif-try.firebaseapp.com',
     storageBucket: 'self-notif-try.appspot.com',
+    measurementId: 'G-N8MWF0JP4F',
   );
 
   static const FirebaseOptions android = FirebaseOptions(

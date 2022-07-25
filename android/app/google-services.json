@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "429108020551",
+    "project_id": "self-notif-try",
+    "storage_bucket": "self-notif-try.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429108020551:android:cb4b3db1315861d4c97862",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429108020551-i9vaaab8gbfs1ocg8g02aogpdck26nog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj1aB8OnD1FCMpRuquaCaH_enXT8M31Xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429108020551-i9vaaab8gbfs1ocg8g02aogpdck26nog.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "429108020551-fqm5rt0j9rfr3icrm6n5bft6lvthsj9v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "me.andika.flutterapp1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
