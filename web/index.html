@@ -36,29 +36,6 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyANW6pJC3000aEEinfxSX4RwqOmtnwXJ3o",
-      authDomain: "self-notif-try.firebaseapp.com",
-      projectId: "self-notif-try",
-      storageBucket: "self-notif-try.appspot.com",
-      messagingSenderId: "429108020551",
-      appId: "1:429108020551:web:819b1b979c07749dc97862",
-      measurementId: "G-N8MWF0JP4F"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
@@ -106,7 +83,7 @@
               loadMainDartJs();
             }
           });
-
+        navigator.serviceWorker.register('/flutter_service_worker.js');
         // If service worker doesn't succeed in a reasonable amount of time,
         // fallback to plaint <script> tag.
         setTimeout(() => {
@@ -123,5 +100,6 @@
       loadMainDartJs();
     }
   </script>
+  <script src="https://meet.jit.si/external_api.js" type="application/javascript"></script>
 </body>
 </html>
