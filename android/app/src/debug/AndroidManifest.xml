@@ -1,5 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_application_1">
+    package="com.example.flutter_application_1"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application 
+        tools:replace="android:label"  
+        android:name="${applicationName}"
+        android:label="flutter_application_1"
+        android:icon="@mipmap/ic_launcher">
+        ...
+    </application>
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
