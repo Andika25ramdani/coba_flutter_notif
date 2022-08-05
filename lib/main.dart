@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +25,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  joinMeeting() async {
+    var options = JitsiMeetingOptions(room: 'mynewroom');
+    await JitsiMeet.joinMeeting(options);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.brown,
       body: Container(
         color: Colors.amber,
-        child: const Center(child: Text('halo')),
+        child: Center(
+            child: ElevatedButton(
+          onPressed: joinMeeting,
+          child: const Text('halo'),
+        )),
       ),
     );
   }
