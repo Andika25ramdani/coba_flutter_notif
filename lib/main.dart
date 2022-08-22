@@ -26,7 +26,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   joinMeeting() async {
-    var options = JitsiMeetingOptions(room: 'mynewroom');
+    var options = JitsiMeetingOptions(room: 'apadongmeeting')
+      ..serverURL = 'https://gpu-esmp.jumpa.id/';
     await JitsiMeet.joinMeeting(options);
   }
 
